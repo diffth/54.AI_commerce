@@ -57,9 +57,9 @@ def wait_for_active(vid_data, max_retries: int = 120):
         
     raise TimeoutError(f"[TIMEOUT] 비디오가 {max_retries * 5}초 내에 ACTIVE 상태로 변환되지 않았습니다.")
 
-def generate_long_take(image_path, base_prompt, extend_prompts=[], output_filename="result.mp4"):
+def generate_long_take(image_path: str, base_prompt: str, extend_prompts: list[str] = [], output_filename: str = "result.mp4") -> None:
     """
-    이미지를 기반으로 첫 5초를 만들고, extend_prompts 배열 길이만큼 물고 늘어지며 영상을 롱테이크로 연장합니다.
+    이미지를 기반으로 첫 5초를 만들고, extend_prompts 배열 길이만큼 물고 늘어지며 영상을 롱테이크(Long-take)로 연장합니다.
     """
     client = get_client()
     if not os.path.exists(image_path):
