@@ -16,7 +16,7 @@ VEO_MODEL_ID = "veo-3.1-generate-preview"
 
 _client = None
 
-def get_client():
+def get_client() -> genai.Client:
     """Gemini API 클라이언트를 필요한 시점에 싱글톤 패턴으로 안전하게 초기화합니다."""
     global _client
     if _client is None:
@@ -29,7 +29,7 @@ def get_client():
         _client = genai.Client(api_key=api_key)
     return _client
 
-def wait_for_active(vid_data, max_retries=120):
+def wait_for_active(vid_data, max_retries: int = 120):
     """구글 클라우드 내부망에서 영상 후처리(ACTIVE)가 끝날 때까지 대기하여 연장 에러를 방지합니다."""
     client = get_client()
     # name 속성이 있다면 우선 사용하고, 없을 경우 uri를 파싱합니다.
